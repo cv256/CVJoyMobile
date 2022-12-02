@@ -61,7 +61,7 @@
                 VerticalTextAlignment="Center"
                 />
             <Label 
-                Text="       "
+                Text="          "
                 FontSize="30"
                 VerticalTextAlignment="Center"
                 />
@@ -80,7 +80,7 @@
                 />
 
             <Label 
-                Text="       "
+                Text="          "
                 FontSize="30"
                 VerticalTextAlignment="Center"
                 />
@@ -104,7 +104,7 @@
                 VerticalTextAlignment="Center"
                 />
             <Label 
-                Text="       "
+                Text="          "
                 FontSize="30"
                 VerticalTextAlignment="Center"
                 />
