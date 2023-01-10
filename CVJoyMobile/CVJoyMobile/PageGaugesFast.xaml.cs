@@ -39,10 +39,13 @@ namespace CVJoyMobile
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
                 //rpmText.Text = udpReceiver.Info.rpm.ToString();
                 //gearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
-                //double pedalsHeight = linePedals.Height;
-                //clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
-                //brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
-                //accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
+                double pedalsHeight = linePedals.Height;
+                clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
+                brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
+                accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
+                double turboWidth = lineTurbo.Width;
+                turbo.WidthRequest = udpReceiver.TurboPercent() * turboWidth;
+                turboMax.Text= ((Single)udpReceiver.InfoExtra.turboMax).ToString("0.0");
                 Distance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0");
                 Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
                 if (udpReceiver.InfoExtra.FuelAvg == 0)
@@ -52,7 +55,7 @@ namespace CVJoyMobile
                 }
                 else
                 {
-                    FuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 10).ToString("0");
+                    FuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 100).ToString("0");
                     FuelAvg.Text = (udpReceiver.InfoExtra.FuelAvg).ToString(udpReceiver.InfoExtra.FuelAvg < 10 ? "0.0" : "0");
                 }
                 this.BatchCommit();
@@ -75,6 +78,7 @@ namespace CVJoyMobile
                 11,
                 -120, 120, Gauge.enumRadiusSize.ExpandStart);
         }
+
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
         {
             speedGauge.Init(0, 260, 260,

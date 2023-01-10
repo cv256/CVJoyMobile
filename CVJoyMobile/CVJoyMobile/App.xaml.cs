@@ -13,7 +13,8 @@ namespace CVJoyMobile
         {
             InitializeComponent();
             udpReceiver = new BaseUdpReceiver();
-            udpReceiver.Start(); // udpReceiver.StartDebug();
+            //udpReceiver.Start(); 
+            udpReceiver.StartDebug();
 
             MainPage = new PageDigital();
         }

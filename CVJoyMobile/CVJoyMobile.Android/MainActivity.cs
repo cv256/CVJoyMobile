@@ -15,7 +15,7 @@ namespace CVJoyMobile.Droid
         {
             Window window = (this as Activity).Window;
             window.AddFlags(WindowManagerFlags.KeepScreenOn);
-
+            
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

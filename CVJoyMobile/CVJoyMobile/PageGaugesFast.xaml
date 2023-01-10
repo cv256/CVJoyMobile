@@ -41,87 +41,96 @@
             VerticalOptions="End" 
              Color="Red" />
 
+
+
         <!-- DISTANCE : -->
-        <StackLayout Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="2"
-            Orientation="Horizontal"
-            HorizontalOptions="Center" 
-            VerticalOptions="Start" 
-            >
-            <Label 
+        <Grid Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="48" BackgroundColor="Transparent" RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="20*" />
+
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="40*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0"  Grid.Column="0" 
                 x:Name="Distance"
                 Text="99.9"
                 TextColor="#ffffffff"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
-                Text="KMs"
+            <Label Grid.Row="0"  Grid.Column="1"  
+                Text=" KMs"
                 TextColor="#8D6C2A"
                 FontSize="30"
+                HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
-                Text="          "
-                FontSize="30"
-                VerticalTextAlignment="Center"
-                />
-            <Label 
-                Text="Lap"
+
+            <Label  Grid.Row="0"  Grid.Column="2" 
+                Text="Lap  "
                 TextColor="#8D6C2A"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
+            <Label Grid.Row="0"  Grid.Column="3" 
                 x:Name="Lap"
                 Text="0 / 99"
                 TextColor="#ffffffff"
                 FontSize="30"
+                HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Center"
                 />
 
-            <Label 
-                Text="          "
-                FontSize="30"
-                VerticalTextAlignment="Center"
-                />
-            <Label 
-                Text="Fuel "
+            <Label Grid.Row="0"  Grid.Column="4" 
+                Text="Fuel"
                 TextColor="#8D6C2A"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
+            <Label Grid.Row="0"  Grid.Column="5" 
                 x:Name="FuelKMs"
                 Text="99"
                 TextColor="#ffffffff"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
-                Text="KMs"
+            <Label Grid.Row="0"  Grid.Column="6" 
+                Text=" KMs"
                 TextColor="#8D6C2A"
                 FontSize="30"
+                HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
-                Text="          "
-                FontSize="30"
-                VerticalTextAlignment="Center"
-                />
-            <Label 
+
+
+            <Label Grid.Row="0"  Grid.Column="7" 
                 x:Name="FuelAvg"
                 Text="99"
                 TextColor="#ffffffff"
                 FontSize="30"
+                HorizontalTextAlignment="End"
                 VerticalTextAlignment="Center"
                 />
-            <Label 
-                Text="l/100KMs"
+            <Label Grid.Row="0"  Grid.Column="8" 
+                Text=" l/100KMs"
                 TextColor="#8D6C2A"
                 FontSize="30"
+                HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Center"
                 />
-        </StackLayout>
+        </Grid>
 
 
         <!-- RPM : -->
@@ -151,10 +160,105 @@
                VerticalOptions="Start" />
 
 
+        <!-- PEDALS : -->
+        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="4" Margin="15,130,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="4" />
+            </Grid.ColumnDefinitions>
+            <BoxView Grid.Row="0" Grid.Column="0" 
+                x:Name="clutch"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="5"
+                 VerticalOptions="End"
+                 Color="Blue"
+                />
+            <BoxView Grid.Row="0" Grid.Column="1" 
+                x:Name="linePedals"
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+            <BoxView Grid.Row="0" Grid.Column="2" 
+                x:Name="brake"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="325"
+                VerticalOptions="End"
+                 Color="Red"
+                />
+            <BoxView Grid.Row="0" Grid.Column="3" 
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+            <BoxView Grid.Row="0" Grid.Column="4" 
+                x:Name="accel"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="5"
+                VerticalOptions="End"
+                 Color="Green"
+                />
+        </Grid>
+
+
+
+
+        <!-- TURBO : -->
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="End"  RowSpacing="4" ColumnSpacing="0" Margin="180,0,180,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0"  Grid.Column="0"  
+                Text="Turbo"
+                TextColor="White"
+                FontSize="19"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="End"
+            />
+            <Label Grid.Row="0"  Grid.Column="0"  
+                Text="0"
+                TextColor="White"
+                FontSize="19"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="End"
+            />
+            <Label Grid.Row="0"  Grid.Column="0"  
+                x:Name="turboMax"
+                Text="1.2"
+                TextColor="White"
+                FontSize="19"
+                HorizontalTextAlignment="End"
+                VerticalTextAlignment="End"
+            />
+            <BoxView Grid.Row="1" Grid.Column="0" 
+                x:Name="lineTurbo"
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+            <BoxView Grid.Row="2" Grid.Column="0" 
+                x:Name="turbo"
+                 VerticalOptions ="Fill" 
+                 WidthRequest="250"
+                 HorizontalOptions="Start"
+                 Color="Yellow"
+                />
+            <BoxView Grid.Row="3" Grid.Column="0" 
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+        </Grid>
 
         <Button Grid.Row="1"  Grid.Column="1"
                 Clicked="Button_Clicked"
-                Text="..."
+                Text="          ..."
                 VerticalOptions="Center"
                 HorizontalOptions="Start"
                 BackgroundColor="Transparent"
