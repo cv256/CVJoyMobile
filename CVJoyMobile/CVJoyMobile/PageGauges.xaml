@@ -17,7 +17,6 @@
             <ColumnDefinition Width="45*" />
         </Grid.ColumnDefinitions>
 
-
         <!-- TYRES SLIP: -->
         <BoxView x:Name="slipFL" Grid.Row="0"  Grid.Column="0" 
             WidthRequest="48"
@@ -230,14 +229,12 @@
                  Color="Green"
                 />
         </Grid>
-
-        <Button Grid.Row="1"  Grid.Column="2" 
+        
+        <ImageButton Grid.Row="2"  Grid.Column="2" Margin="0,0,0,110"
                 Clicked="Button_Clicked"
-                Text="..."
+                Source="dashlights"
                 VerticalOptions="End"
                 HorizontalOptions="Center"
-                BackgroundColor="Transparent"
-                TextColor="White"
                 />
 
     </Grid>

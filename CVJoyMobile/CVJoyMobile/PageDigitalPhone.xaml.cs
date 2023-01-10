@@ -11,9 +11,8 @@ namespace CVJoyMobile
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
 
-        private void UdpReceiver_Updated(object sender, EventArgs e)
+        private void UdpReceiver_Updated(BaseUdpReceiver udpReceiver, Boolean extra)
         {
-            BaseUdpReceiver udpReceiver = (BaseUdpReceiver)sender;
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.BatchBegin();
@@ -55,7 +54,7 @@ namespace CVJoyMobile
         private void Button_Clicked(object sender, EventArgs e)
         {
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated -= UdpReceiver_Updated;
-            Application.Current.MainPage = new PageDigital();
+            (Application.Current as CVJoyMobile.App).AskForPage();
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 
+public delegate void UpdatedHandler(BaseUdpReceiver udpReceiver, Boolean extra);
 
 public class BaseUdpReceiver
 {
@@ -11,8 +11,7 @@ public class BaseUdpReceiver
     public IPAddress ip = IPAddress.Any;
     public int port = 45000;
 
-    public event EventHandler Updated;
-    public event EventHandler UpdatedExtra;
+    public event UpdatedHandler Updated;
 
     private UdpClient udpClient;
 
@@ -90,13 +89,19 @@ public class BaseUdpReceiver
     {
         Xamarin.Forms.Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
         {
-            byte[] recvBuffer = new byte[36];
-            recvBuffer[0] = 255;
-            for (Int16 x = 1; x < recvBuffer.Length; x++)
+            byte len = 20; // Main info every 10Hz
+            if (new Random().Next(1000) > 800) len = 36; // Extra info every 2Hz
+            if (new Random().Next(1000) > 990) len = (byte)(new Random().Next(33) + 2); // simulate errors
+
+            byte[] recvBuffer = new byte[len];
+            for (Int16 x = 0; x < len - 1; x++)
             {
-                recvBuffer[x] = (byte)new Random().Next(255);
+                recvBuffer[x] = (byte)new Random().Next(254);
             }
+            if (new Random().Next(1000) < 990) recvBuffer[0] = 255; // simulate errors
+
             setData(recvBuffer);
+
             return true;
         });
     }
@@ -113,7 +118,7 @@ public class BaseUdpReceiver
         }
         catch (Exception ex)
         {
-            Debug.Print(ex.Message);
+            (Xamarin.Forms.Application.Current as CVJoyMobile.App).DebugPrint("Error on EndReceive: " + ex.Message);
             return;
         }
 
@@ -122,7 +127,10 @@ public class BaseUdpReceiver
             thi.setData(recvBuffer);
         }
 
-        if (thi.udpClient != null) { thi.udpClient.BeginReceive(OnUdpDataReceived, thi); }
+        if (thi.udpClient != null)
+        {
+            thi.udpClient.BeginReceive(OnUdpDataReceived, thi);
+        }
     }
 
 
@@ -132,7 +140,7 @@ public class BaseUdpReceiver
 
         if (recvBuffer[0] != 255 || recvBuffer.Length < 20)
         {
-            Debug.Print("[0]=" + recvBuffer[0].ToString() + "   len=" + recvBuffer.Length.ToString());
+            (Xamarin.Forms.Application.Current as CVJoyMobile.App).DebugPrint("[0]=" + recvBuffer[0].ToString() + "   len=" + recvBuffer.Length.ToString());
             return;
         }
 
@@ -165,7 +173,7 @@ public class BaseUdpReceiver
         Info.accel = (Single)recvBuffer[15] / 255;
         Info.brake = (Single)recvBuffer[16] / 255;
         Info.clutch = (Single)recvBuffer[17] / 255;
-        Info.turbo= Convert.ToUInt16(recvBuffer[18] + recvBuffer[19] * 256);
+        Info.turbo = Convert.ToUInt16(recvBuffer[18] + recvBuffer[19] * 256);
 
         if (recvBuffer.Length == 36)
         {
@@ -182,10 +190,9 @@ public class BaseUdpReceiver
             InfoExtra.CompletedLaps = recvBuffer[31];
             InfoExtra.DistanceTraveled = (Single)(recvBuffer[32] + recvBuffer[33] * 256) / 1000;
             InfoExtra.FuelAvg = (Single)(recvBuffer[34] + recvBuffer[35] * 256) / 100;
-            UpdatedExtra?.Invoke(this, new EventArgs());
         }
 
-        Updated?.Invoke(this, new EventArgs());
+        Updated?.Invoke(this, recvBuffer.Length >= 36);
     }
 
 

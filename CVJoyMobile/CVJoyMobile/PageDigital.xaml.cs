@@ -13,9 +13,8 @@ namespace CVJoyMobile
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
 
-        private void UdpReceiver_Updated(object sender, EventArgs e)
+        private void UdpReceiver_Updated(BaseUdpReceiver udpReceiver, Boolean extra)
         {
-            BaseUdpReceiver udpReceiver = (BaseUdpReceiver)sender;
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.BatchBegin();
@@ -37,17 +36,21 @@ namespace CVJoyMobile
                 clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
                 brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
                 accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
-                Distance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled ).ToString("0.0");
-                Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
-                if (udpReceiver.InfoExtra.FuelAvg == 0)
+
+                if (extra)
                 {
-                    FuelKMs.Text = "-";
-                    FuelAvg.Text = "-";
-                }
-                else
-                {
-                    FuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 100).ToString("0");
-                    FuelAvg.Text = (udpReceiver.InfoExtra.FuelAvg).ToString(udpReceiver.InfoExtra.FuelAvg < 10 ? "0.0" : "0");
+                    Distance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0");
+                    Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
+                    if (udpReceiver.InfoExtra.FuelAvg == 0)
+                    {
+                        FuelKMs.Text = "-";
+                        FuelAvg.Text = "-";
+                    }
+                    else
+                    {
+                        FuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 100).ToString("0");
+                        FuelAvg.Text = (udpReceiver.InfoExtra.FuelAvg).ToString(udpReceiver.InfoExtra.FuelAvg < 10 ? "0.0" : "0");
+                    }
                 }
 
                 this.BatchCommit();
@@ -57,7 +60,7 @@ namespace CVJoyMobile
         private void Button_Clicked(object sender, EventArgs e)
         {
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated -= UdpReceiver_Updated;
-            Application.Current.MainPage = new PageGauges();
+            (Application.Current as CVJoyMobile.App).AskForPage();
         }
     }
 }

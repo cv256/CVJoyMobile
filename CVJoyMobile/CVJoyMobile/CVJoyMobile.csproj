@@ -15,8 +15,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\dashlights.png" />
+    <None Remove="Resources\Thumbs.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\dashlights.png" />
+    <Resource Include="Resources\Thumbs.db" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,14 +36,26 @@
     <Compile Update="PageDigitalPhone.xaml.cs">
       <DependentUpon>PageDigitalPhone.xaml</DependentUpon>
     </Compile>
+    <Compile Update="PageDebug.xaml.cs">
+      <DependentUpon>PageDebug.xaml</DependentUpon>
+    </Compile>
     <Compile Update="PageGaugesFast.xaml.cs">
       <DependentUpon>PageGaugesFast.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="PageGauges.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVJoyMobile.PageDebug"
+             NavigationPage.HasNavigationBar="false"
+             Title="CVJoy Debug">
+    <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollView  Orientation="Both"  VerticalScrollBarVisibility="Always">
+            <Label 
+                x:Name="lbDebugPrints"
+                Text="(empty)"
+                TextColor="#ffffffff"
+                BackgroundColor="Transparent"
+                FontSize="18" 
+                VerticalOptions="StartAndExpand"
+                VerticalTextAlignment="Start"
+                HorizontalOptions="StartAndExpand"
+                HorizontalTextAlignment="Start"
+                />
+        </ScrollView>
+        
+        <ImageButton 
+                Clicked="Button_Clicked"
+                Source="dashlights"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                />
+
+    </Grid>
+
+</ContentPage>

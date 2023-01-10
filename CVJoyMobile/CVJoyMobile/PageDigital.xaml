@@ -246,15 +246,13 @@
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand" />
 
-
-        <Button Grid.Row="2"  Grid.Column="1"
+        <ImageButton Grid.Row="2"  Grid.Column="1" 
                 Clicked="Button_Clicked"
-                Text="..."
+                Source="dashlights"
                 VerticalOptions="Start"
                 HorizontalOptions="End"
-                BackgroundColor="Transparent"
-                TextColor="White"
                 />
+
     </Grid>
 
 </ContentPage>

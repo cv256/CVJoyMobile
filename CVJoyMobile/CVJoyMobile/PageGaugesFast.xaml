@@ -161,7 +161,7 @@
 
 
         <!-- PEDALS : -->
-        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="4" Margin="15,130,0,0">
+        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="4" Margin="11,130,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4" />
                 <ColumnDefinition Width="1" />
@@ -256,14 +256,12 @@
                 />
         </Grid>
 
-        <Button Grid.Row="1"  Grid.Column="1"
+        <ImageButton Grid.Row="1"  Grid.Column="1"  Margin="50,2,0,0"
                 Clicked="Button_Clicked"
-                Text="          ..."
+                Source="dashlights"
                 VerticalOptions="Center"
                 HorizontalOptions="Start"
-                BackgroundColor="Transparent"
-                TextColor="White"
                 />
-    </Grid>
 
+    </Grid>
 </ContentPage>

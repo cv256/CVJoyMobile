@@ -7,12 +7,18 @@
 
     <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"  /> <!--0 distance -->
-            <RowDefinition Height="9*"  /> <!--1 rpm -->
-            <RowDefinition Height="4*"  /> <!--2 fuel -->
-            <RowDefinition Height="3" /> <!--3 blue line -->
-            <RowDefinition Height="8*" /> <!--4 labels -->
-            <RowDefinition Height="16*" /> <!--5 speed/pedals/gear -->
+            <RowDefinition Height="4*"  />
+            <!--0 distance -->
+            <RowDefinition Height="9*"  />
+            <!--1 rpm -->
+            <RowDefinition Height="4*"  />
+            <!--2 fuel -->
+            <RowDefinition Height="3" />
+            <!--3 blue line -->
+            <RowDefinition Height="8*" />
+            <!--4 labels -->
+            <RowDefinition Height="16*" />
+            <!--5 speed/pedals/gear -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*" />
@@ -21,6 +27,13 @@
             <ColumnDefinition Width="20*" />
             <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
+
+        <ImageButton Grid.Row="4"  Grid.Column="1" 
+                Clicked="Button_Clicked"
+                Source="dashlights"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                />
 
         <!-- TIRES : -->
         <BoxView Grid.Row="0"  Grid.Column="0" Grid.RowSpan="3" Color="Red" x:Name="slipFL"/>
@@ -89,7 +102,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
          />
-        
+
         <!-- FUEL : -->
         <StackLayout Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2"
             Orientation="Horizontal"
@@ -135,11 +148,11 @@
                 />
         </StackLayout>
 
-        
+
         <!-- blue line -->
         <BoxView Grid.Row="3"  Grid.ColumnSpan="5" Color="#ff203050" x:Name="lineWidth"/>
 
-        
+
         <!-- SPEED : -->
         <Label Grid.Row="4"  Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
                 Text="Speed"
@@ -201,8 +214,6 @@
 
         </Grid>
 
-        
-        
         <!-- GEAR : -->
         <Label Grid.Row="4"  Grid.Column="3"  Grid.RowSpan="2" Grid.ColumnSpan="2" 
                x:Name="gearAuto"
@@ -222,14 +233,5 @@
                VerticalOptions="CenterAndExpand" 
                />
 
-        <Button Grid.Row="4"  Grid.Column="1"
-                Clicked="Button_Clicked"
-                Text="..."
-                VerticalOptions="Start"
-                HorizontalOptions="End"
-                BackgroundColor="Transparent"
-                TextColor="White"
-                />
     </Grid>
-
 </ContentPage>
