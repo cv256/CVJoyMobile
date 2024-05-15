@@ -17,26 +17,26 @@
 
         <!-- TYRES SLIP: -->
         <BoxView x:Name="slipFL" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2"
-            WidthRequest="90"
-            HeightRequest="90"
+            WidthRequest="170"
+            HeightRequest="170"
             HorizontalOptions="Start" 
             VerticalOptions="Start" 
              Color="Red" />
         <BoxView x:Name="slipFR" Grid.Row="0"  Grid.Column="1"  Grid.RowSpan="2"
-            WidthRequest="90"
-            HeightRequest="90"
+            WidthRequest="170"
+            HeightRequest="170"
             HorizontalOptions="End" 
             VerticalOptions="Start" 
              Color="Red" />
         <BoxView x:Name="slipRL" Grid.Row="1"  Grid.Column="0" 
-            WidthRequest="90"
-            HeightRequest="90"
+            WidthRequest="170"
+            HeightRequest="170"
             HorizontalOptions="Start" 
             VerticalOptions="End" 
              Color="Red" />
         <BoxView x:Name="slipRR" Grid.Row="1"  Grid.Column="1" 
-            WidthRequest="90"
-            HeightRequest="90"
+            WidthRequest="170"
+            HeightRequest="170"
             HorizontalOptions="End" 
             VerticalOptions="End" 
              Color="Red" />
