@@ -77,16 +77,19 @@ namespace CVJoyMobile
                 Color.FromHsla((double)215 / 360, 1, .80),
                 Color.OrangeRed,
                 7,
-                225, 495, Gauge.enumRadiusSize.Fit);
+                225, 495, Gauge.enumGaugeRadiusSize.Fit,
+                Color.OrangeRed);
         }
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
         {
             speedGauge.Init(0, 240, 240,
                 Color.FromHsla((double)215 / 360, 1, .30),
                 Color.FromHsla((double)215 / 360, 1, .55),
-                Color.FromHsla((double)215 / 360, 1, .80), Color.OrangeRed,
+                Color.FromHsla((double)215 / 360, 1, .80), 
+                Color.OrangeRed,
                 7,
-                225, 495, Gauge.enumRadiusSize.Fit);
+                225, 495, Gauge.enumGaugeRadiusSize.Fit,
+                Color.OrangeRed);
         }
     }
 }

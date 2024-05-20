@@ -80,7 +80,8 @@ namespace CVJoyMobile
                 Color.FromHsla((double)320 / 360, 1, .80),
                 Color.FromHsla((double)80 / 360, 1, .6),
                 11,
-                -120, 120, Gauge.enumRadiusSize.ExpandStart);
+                -120, 120, Gauge.enumGaugeRadiusSize.ExpandStart,
+                Color.FromHsla((double)80 / 360, 1, .6));
         }
 
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
@@ -91,7 +92,8 @@ namespace CVJoyMobile
                 Color.FromHsla((double)140 / 360, 1, .80),
                 Color.FromHsla((double)80 / 360, 1, .6),
                 3,
-                -30, 180, Gauge.enumRadiusSize.ExpandEnd);
+                -30, 180, Gauge.enumGaugeRadiusSize.ExpandEnd,
+                Color.FromHsla((double)80 / 360, 1, .6));
         }
     }
 }

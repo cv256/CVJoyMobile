@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVJoyMobile.PageGaugesW124"
+             NavigationPage.HasNavigationBar="false"
+             Title="Mercedes W124">
+
+    <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0"  >
+        <Grid.RowDefinitions >
+            <RowDefinition Height="20*" /> <!--infos-->
+            <RowDefinition Height="70*" /> <!-- gauges-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*" />
+            <ColumnDefinition Width="44*" />
+            <ColumnDefinition Width="29*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- IMG: -->
+        <Image Aspect="AspectFit"  x:Name="img" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,0,0,0"
+             HorizontalOptions="Center"
+               VerticalOptions="End"
+               Source="mercedes_w124_1990"  
+               />
+
+
+        <!-- SPEED : -->
+        <AbsoluteLayout Grid.Row="1"  Grid.Column="1" Margin="0,0,0,50"
+                 x:Name="speedAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"
+                 SizeChanged="speedAbsolute_SizeChanged"
+        />
+
+        <!-- RPM : -->
+        <AbsoluteLayout  Grid.Row="1"  Grid.Column="2"  Margin="18,0,0,90"
+                 x:Name="rpmAbsolute"
+                 VerticalOptions="Fill"
+                 HorizontalOptions ="Fill"                
+                 SizeChanged="rpmAbsolute_SizeChanged"
+        />
+
+
+
+        <ImageButton Grid.Row="1"  Grid.Column="0"  Margin="0,2,60,28"
+                Clicked="Button_Clicked"
+                Source="dashlights"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                />
+
+
+        <!-- Distance : -->
+        <Label Grid.Row="1"  Grid.Column="1" Margin="0,186,0,0"
+               x:Name="lbDistance"
+               Text="0 0 0 0 0.0"
+               TextColor="LightGray"
+               FontSize="33"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+
+    </Grid>
+</ContentPage>

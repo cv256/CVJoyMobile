@@ -95,7 +95,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CVJoyMobile\CVJoyMobile.csproj">
       <Project>{C19552D9-190F-47CF-BC14-F4382326430B}</Project>
@@ -107,6 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\dashlights.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bmw_m2.jpg" />
+    <AndroidResource Include="Resources\drawable\bmw_m8_2020.jpg" />
+    <AndroidResource Include="Resources\drawable\mercedes_amg_2021.jpg" />
+    <AndroidResource Include="Resources\drawable\mercedes_s_2008.jpg" />
+    <AndroidResource Include="Resources\drawable\mercedes_s_2015.jpg" />
+    <AndroidResource Include="Resources\drawable\mercedes_w124_1990.jpg" />
+    <AndroidResource Include="Resources\drawable\vw_polo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

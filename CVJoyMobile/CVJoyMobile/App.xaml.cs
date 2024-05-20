@@ -46,17 +46,42 @@ namespace CVJoyMobile
 
         public async void AskForPage()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("", "Cancel", null, "Digital", "Diesel", "Fast", "Debug");
+            string action = await Application.Current.MainPage.DisplayActionSheet("", "Cancel", null, "Generic Digital", "Generic Diesel", "Generic Fast",
+                "VW Polo  ( 240 / 5500 )",
+                "BMW M2  ( 300 / 8000 )", "BMW M8 2020  ( 330 / 8000 )",
+                "Mercedes W124 1990  ( 260 / 7000 )", "Mercedes S 2008  ( 260 / 7000 )", "Mercedes S 2015  ( 260 / 8000 )","Mercedes AMG 2021  ( 360 / 8000 )", 
+                "Debug");
             switch (action)
             {
-                case "Digital":
+                case "Generic Digital":
                     Application.Current.MainPage = new PageDigital();
                     break;
-                case "Diesel":
+                case "Generic Diesel":
                     Application.Current.MainPage = new PageGauges();
                     break;
-                case "Fast":
+                case "Generic Fast":
                     Application.Current.MainPage = new PageGaugesFast();
+                    break;
+                case "BMW M2  ( 300 / 8000 )":
+                    Application.Current.MainPage = new PageGaugesBmwM2();
+                    break;
+                case "BMW M8 2020  ( 330 / 8000 )":
+                    Application.Current.MainPage = new PageGaugesBmwM8_2020();
+                    break;
+                case "Mercedes W124 1990  ( 260 / 7000 )":
+                    Application.Current.MainPage = new PageGaugesW124();
+                    break;
+                case "Mercedes S 2008  ( 260 / 7000 )":
+                    //Application.Current.MainPage = new PageGaugesMercedes_S_2008();
+                    break;
+                case "Mercedes S 2015  ( 260 / 8000 )":
+                    //Application.Current.MainPage = new PageGaugesMercedes_S_2015();
+                    break;
+                case "Mercedes AMG 2021  ( 360 / 8000 )":
+                    //Application.Current.MainPage = new PageGaugesMercedes_AMG_2021();
+                    break;
+                case "VW Polo  ( 240 / 5500 )":
+                    //Application.Current.MainPage = new PageGaugesVW_Polo();
                     break;
                 case "Debug":
                     Application.Current.MainPage = new PageDebug();

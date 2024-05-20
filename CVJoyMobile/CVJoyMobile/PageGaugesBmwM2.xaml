@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVJoyMobile.PageGaugesBmwM2"
+             NavigationPage.HasNavigationBar="false"
+             Title="BMW M2">
+
+    <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" /> <!--infos-->
+            <RowDefinition Height="80*" /> <!-- gauges-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="47*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- IMG: -->
+        <Image Aspect="AspectFit"  x:Name="img" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,0,0,0"
+             HorizontalOptions="Center"
+               VerticalOptions="End"
+               Source="bmw_m2"  
+               />
+
+        <!-- SPEED : -->
+        <AbsoluteLayout Grid.Row="1"  Grid.Column="0" Margin="1,0,1,0"
+                 x:Name="speedAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"
+                 SizeChanged="speedAbsolute_SizeChanged"
+        />
+
+        <!-- RPM : -->
+        <AbsoluteLayout  Grid.Row="1"  Grid.Column="2"
+                 x:Name="rpmAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"                
+                 SizeChanged="rpmAbsolute_SizeChanged"
+        />
+
+        <!-- GEAR : -->
+        <Label Grid.Row="1"  Grid.Column="1" Margin="0,20,0,0"
+               x:Name="gear"
+               Text="N"
+               TextColor="White"
+               FontSize="105"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <!-- GearAuto : -->
+        <Label Grid.Row="1"  Grid.Column="1" Margin="0,135,0,0"
+               x:Name="lbGearAuto"
+               Text="Manual"
+               TextColor="White"
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+
+
+        <!-- PEDALS : -->
+        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="6" HorizontalOptions="Center"  Margin="-3,200,0,7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="9" />
+            </Grid.ColumnDefinitions>
+            <BoxView Grid.Row="0" Grid.Column="0" 
+                x:Name="clutch"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="5"
+                 VerticalOptions="End"
+                 Color="Blue"
+                />
+            <BoxView Grid.Row="0" Grid.Column="1" 
+                x:Name="linePedals"
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+            <BoxView Grid.Row="0" Grid.Column="2" 
+                x:Name="brake"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="325"
+                VerticalOptions="End"
+                 Color="Red"
+                />
+            <BoxView Grid.Row="0" Grid.Column="3" 
+                 HorizontalOptions ="Fill" 
+                 VerticalOptions ="Fill" 
+                 Color="White"
+                />
+            <BoxView Grid.Row="0" Grid.Column="4" 
+                x:Name="accel"
+                 HorizontalOptions ="Fill" 
+                 HeightRequest="5"
+                VerticalOptions="End"
+                 Color="Green"
+                />
+        </Grid>
+
+
+
+        <ImageButton Grid.Row="1"  Grid.Column="0"  Margin="0,2,60,28"
+                Clicked="Button_Clicked"
+                Source="dashlights"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                />
+
+        <!-- TIME : -->
+        <Label Grid.Row="1"  Grid.Column="0" Margin="100,0,0,-2"
+               x:Name="lbTime"
+               Text="23:59"
+               TextColor="White"
+               FontSize="24"
+               HorizontalOptions="Start"
+               VerticalOptions="End" />
+
+        <!-- Distance : -->
+        <Label Grid.Row="1"  Grid.Column="2" Margin="0,0,100,-2"
+               x:Name="lbDistance"
+               Text="000 KMs"
+               TextColor="White"
+               FontSize="24"
+               HorizontalOptions="End"
+               VerticalOptions="End" />
+
+        <!-- l/Km : -->
+        <AbsoluteLayout  Grid.Row="1"  Grid.Column="2" Margin="8,233,0,28" 
+                 x:Name="lkmAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"                
+                 SizeChanged="lkmAbsolute_SizeChanged"
+        />
+
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVJoyMobile.PageGaugeProps"
+             NavigationPage.HasNavigationBar="false"
+             Title="CVJoy Gauge Props"
+             WidthRequest="200"
+             >
+
+    <StackLayout>
+        
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Gauge Props">
+                    <EntryCell x:Name="lbvalueMin" Label="Value Min" Keyboard="Numeric"  />
+                    <EntryCell x:Name="lbvalueRedLine" Label="Value RedLine"  Keyboard="Numeric" />
+                    <EntryCell x:Name="lbvalueMax" Label="Value Max"  Keyboard="Numeric" />
+                    <EntryCell x:Name="lbangleMin" Label="Angle Min"  Keyboard="Numeric" />
+                    <EntryCell x:Name="lbangleMax" Label="Angle Max"  Keyboard="Numeric" />
+                    <EntryCell x:Name="lbneedleWidth" Label="Needle Width"  Keyboard="Numeric" />
+                    <EntryCell x:Name="lbneedleValue" Label="Needle Value"  Text="0" Keyboard="Numeric" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Button   Text="OK"              Clicked="OK_Clicked" />
+        <Button   Text="Cancel"        Clicked="Cancel_Clicked" />
+
+    </StackLayout>
+    
+</ContentPage>
