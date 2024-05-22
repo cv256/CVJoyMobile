@@ -185,45 +185,14 @@
 
 
         <!-- PEDALS : -->
-        <BoxView Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" 
-                 x:Name="linePedals"
-                 HorizontalOptions ="Start" 
-                 WidthRequest="5"
-                 Color="#ff203050"
-        />
-        <BoxView Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" 
-                 HorizontalOptions ="End" 
-                 WidthRequest="5"
-                 Color="#ff203050"
-        />
-        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Margin="6,0,7,0" >
+        <Grid x:Name="gridPedals" Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" RowSpacing="0" ColumnSpacing="8" HorizontalOptions="Center" Margin="6,0,7,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <BoxView Grid.Row="0" Grid.Column="0" 
-                x:Name="clutch"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                 VerticalOptions="End"
-                 Color="Blue"
-                />
-            <BoxView Grid.Row="0" Grid.Column="1" 
-                x:Name="brake"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="325"
-                VerticalOptions="End"
-                 Color="Red"
-                />
-            <BoxView Grid.Row="0" Grid.Column="2" 
-                x:Name="accel"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                VerticalOptions="End"
-                 Color="Green"
-                />
-
         </Grid>
 
         

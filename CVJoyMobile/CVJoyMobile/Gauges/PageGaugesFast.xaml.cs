@@ -6,17 +6,19 @@ using Xamarin.Forms.Xaml;
 namespace CVJoyMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageGauges : ContentPage
+    public partial class PageGaugesFast : ContentPage
     {
         Gauge rpmGauge;
         Gauge speedGauge;
+        Pedals pedals;
 
-        public PageGauges()
+        public PageGaugesFast()
         {
             InitializeComponent();
 
             rpmGauge = new Gauge(rpmAbsolute);
             speedGauge = new Gauge(speedAbsolute);
+            pedals = new Pedals(gridPedals);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
@@ -30,21 +32,21 @@ namespace CVJoyMobile
                 slipFR.Color = udpReceiver.Info.slipFR;
                 slipRL.Color = udpReceiver.Info.slipRL;
                 slipRR.Color = udpReceiver.Info.slipRR;
-                speedText.Text = udpReceiver.Info.speed.ToString();
+                //speedText.Text = udpReceiver.Info.speed.ToString();
                 speedGauge.needleValue(udpReceiver.Info.speed);
                 gear.Text = udpReceiver.Info.gear;
                 //rpm.WidthRequest = udpReceiver.RpmPercent() * horizLine1.Width;
                 //rpm.Color = udpReceiver.RpmColor();
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
-                rpmText.Text = udpReceiver.Info.rpm.ToString();
-                gearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
-                double pedalsHeight = linePedals.Height;
-                clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
-                brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
-                accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
+                //rpmText.Text = udpReceiver.Info.rpm.ToString();
+                //gearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
+                pedals.SetValues(udpReceiver.Info);
+                double turboWidth = lineTurbo.Width;
+                turbo.WidthRequest = udpReceiver.TurboPercent() * turboWidth;
 
                 if (extra)
                 {
+                    turboMax.Text = ((Single)udpReceiver.InfoExtra.turboMax).ToString("0.0");
                     Distance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0");
                     Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
                     if (udpReceiver.InfoExtra.FuelAvg == 0)
@@ -71,25 +73,26 @@ namespace CVJoyMobile
 
         private void rpmAbsolute_SizeChanged(object sender, EventArgs e)
         {
-            rpmGauge.Init(0, 5000, 6000,
-                Color.FromHsla((double)215 / 360, 1, .30),
-                Color.FromHsla((double)215 / 360, 1, .55),
-                Color.FromHsla((double)215 / 360, 1, .80),
-                Color.OrangeRed,
-                7,
-                225, 495, Gauge.enumGaugeRadiusSize.Fit,
-                Color.OrangeRed);
+            rpmGauge.Init(0, 7000, 8000,
+                Color.FromHsla((double)320 / 360, 1, .30),
+                Color.FromHsla((double)320 / 360, 1, .55),
+                Color.FromHsla((double)320 / 360, 1, .80),
+                Color.FromHsla((double)80 / 360, 1, .6),
+                11,
+                -120, 120, Gauge.enumGaugeRadiusSize.ExpandStart,
+                Color.FromHsla((double)80 / 360, 1, .6));
         }
+
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
         {
-            speedGauge.Init(0, 240, 240,
-                Color.FromHsla((double)215 / 360, 1, .30),
-                Color.FromHsla((double)215 / 360, 1, .55),
-                Color.FromHsla((double)215 / 360, 1, .80), 
-                Color.OrangeRed,
-                7,
-                225, 495, Gauge.enumGaugeRadiusSize.Fit,
-                Color.OrangeRed);
+            speedGauge.Init(0, 260, 260,
+                Color.FromHsla((double)140 / 360, 1, .30),
+                Color.FromHsla((double)140 / 360, 1, .55),
+                Color.FromHsla((double)140 / 360, 1, .80),
+                Color.FromHsla((double)80 / 360, 1, .6),
+                3,
+                -30, 180, Gauge.enumGaugeRadiusSize.ExpandEnd,
+                Color.FromHsla((double)80 / 360, 1, .6));
         }
     }
 }

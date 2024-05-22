@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CVJoyMobile.PageGauges"
+             x:Class="CVJoyMobile.PageGaugesDiesel"
              NavigationPage.HasNavigationBar="false"
-             Title="CVJoy Gauges">
+             Title="Gauges Diesel">
 
     <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0">
         <Grid.RowDefinitions>
@@ -188,7 +188,7 @@
 
 
         <!-- PEDALS : -->
-        <Grid Grid.Row="2" Grid.Column="1" RowSpacing="0" ColumnSpacing="9" Margin="20,0,20,0" >
+        <Grid x:Name="gridPedals" Grid.Row="2"  Grid.Column="1" RowSpacing="0" ColumnSpacing="9" Margin="20,0,20,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="1" />
@@ -196,39 +196,8 @@
                 <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <BoxView Grid.Row="0" Grid.Column="0" 
-                x:Name="clutch"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                 VerticalOptions="End"
-                 Color="Blue"
-                />
-            <BoxView Grid.Row="0" Grid.Column="1" 
-                x:Name="linePedals"
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="2" 
-                x:Name="brake"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="325"
-                VerticalOptions="End"
-                 Color="Red"
-                />
-            <BoxView Grid.Row="0" Grid.Column="3" 
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="4" 
-                x:Name="accel"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                VerticalOptions="End"
-                 Color="Green"
-                />
         </Grid>
+
         
         <ImageButton Grid.Row="2"  Grid.Column="2" Margin="0,0,0,110"
                 Clicked="Button_Clicked"

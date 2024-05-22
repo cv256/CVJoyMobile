@@ -59,7 +59,7 @@
 
 
         <!-- PEDALS : -->
-        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="8" Margin="0,240,0,0" HorizontalOptions="Center">
+        <Grid x:Name="gridPedals" Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="8" Margin="0,240,0,0" HorizontalOptions="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="11" />
                 <ColumnDefinition Width="1" />
@@ -67,42 +67,9 @@
                 <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="11" />
             </Grid.ColumnDefinitions>
-            <BoxView Grid.Row="0" Grid.Column="0" 
-                x:Name="clutch"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                 VerticalOptions="End"
-                 Color="Blue"
-                />
-            <BoxView Grid.Row="0" Grid.Column="1" 
-                x:Name="linePedals"
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="2" 
-                x:Name="brake"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="325"
-                VerticalOptions="End"
-                 Color="Red"
-                />
-            <BoxView Grid.Row="0" Grid.Column="3" 
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="4" 
-                x:Name="accel"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                VerticalOptions="End"
-                 Color="Green"
-                />
         </Grid>
 
-
-
+        
         <ImageButton Grid.Row="1"  Grid.Column="0"  Margin="0,2,60,28"
                 Clicked="Button_Clicked"
                 Source="dashlights"

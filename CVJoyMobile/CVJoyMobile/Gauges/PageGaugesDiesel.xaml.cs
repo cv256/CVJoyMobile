@@ -1,15 +1,25 @@
 ﻿using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
 
 namespace CVJoyMobile
 {
-    public partial class PageDigital : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageGaugesDiesel : ContentPage
     {
+        Gauge rpmGauge;
+        Gauge speedGauge;
+        Pedals pedals;
 
-
-        public PageDigital() // just for the designer preview
+        public PageGaugesDiesel()
         {
             InitializeComponent();
+
+            rpmGauge = new Gauge(rpmAbsolute);
+            speedGauge = new Gauge(speedAbsolute);
+            pedals = new Pedals(gridPedals);
+
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
 
@@ -18,24 +28,19 @@ namespace CVJoyMobile
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.BatchBegin();
-                speed.Text = udpReceiver.Info.speed.ToString();
-                gear.Text = udpReceiver.Info.gear;
                 slipFL.Color = udpReceiver.Info.slipFL;
                 slipFR.Color = udpReceiver.Info.slipFR;
                 slipRL.Color = udpReceiver.Info.slipRL;
                 slipRR.Color = udpReceiver.Info.slipRR;
-                dirtFL.Color = udpReceiver.Info.dirtFL;
-                dirtFR.Color = udpReceiver.Info.dirtFR;
-                dirtRL.Color = udpReceiver.Info.dirtRL;
-                dirtRR.Color = udpReceiver.Info.dirtRR;
-                rpm.WidthRequest = udpReceiver.RpmPercent() * horizLine1.Width;
-                rpm.Color = udpReceiver.RpmColor();
+                speedText.Text = udpReceiver.Info.speed.ToString();
+                speedGauge.needleValue(udpReceiver.Info.speed);
+                gear.Text = udpReceiver.Info.gear;
+                //rpm.WidthRequest = udpReceiver.RpmPercent() * horizLine1.Width;
+                //rpm.Color = udpReceiver.RpmColor();
+                rpmGauge.needleValue(udpReceiver.Info.rpm);
                 rpmText.Text = udpReceiver.Info.rpm.ToString();
-                gearAuto.Text = udpReceiver.Info.gearAuto ? "Gear Auto" : "Gear Manual";
-                double pedalsHeight = linePedals.Height;
-                clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
-                brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
-                accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
+                gearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
+                pedals.SetValues(udpReceiver.Info);
 
                 if (extra)
                 {
@@ -61,6 +66,29 @@ namespace CVJoyMobile
         {
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated -= UdpReceiver_Updated;
             (Application.Current as CVJoyMobile.App).AskForPage();
+        }
+
+        private void rpmAbsolute_SizeChanged(object sender, EventArgs e)
+        {
+            rpmGauge.Init(0, 5000, 6000,
+                Color.FromHsla((double)215 / 360, 1, .30),
+                Color.FromHsla((double)215 / 360, 1, .55),
+                Color.FromHsla((double)215 / 360, 1, .80),
+                Color.OrangeRed,
+                7,
+                225, 495, Gauge.enumGaugeRadiusSize.Fit,
+                Color.OrangeRed);
+        }
+        private void speedAbsolute_SizeChanged(object sender, EventArgs e)
+        {
+            speedGauge.Init(0, 240, 240,
+                Color.FromHsla((double)215 / 360, 1, .30),
+                Color.FromHsla((double)215 / 360, 1, .55),
+                Color.FromHsla((double)215 / 360, 1, .80), 
+                Color.OrangeRed,
+                7,
+                225, 495, Gauge.enumGaugeRadiusSize.Fit,
+                Color.OrangeRed);
         }
     }
 }

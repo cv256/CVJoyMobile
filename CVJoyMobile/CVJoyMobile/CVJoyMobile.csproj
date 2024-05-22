@@ -27,29 +27,38 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Gauges\PageGaugesFordFocus_2015d.xaml.cs">
+      <DependentUpon>PageGaugesFordFocus_2015d.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Gauges\PageGaugesFordFocus_2015.xaml.cs">
+      <DependentUpon>PageGaugesFordFocus_2015.xaml</DependentUpon>
+    </Compile>
     <Compile Update="PageGaugeProps.xaml.cs">
       <DependentUpon>PageGaugeProps.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageDigital.xaml.cs">
+    <Compile Update="Gauges\PageDigital.xaml.cs">
       <DependentUpon>PageDigital.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageDigitalPhone.xaml.cs">
+    <Compile Update="Gauges\PageDigitalPhone.xaml.cs">
       <DependentUpon>PageDigitalPhone.xaml</DependentUpon>
     </Compile>
     <Compile Update="PageDebug.xaml.cs">
       <DependentUpon>PageDebug.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageGaugesBmwM8_2020.xaml.cs">
+    <Compile Update="Gauges\PageGaugesBmwM8_2020.xaml.cs">
       <DependentUpon>PageGaugesBmwM8_2020.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageGaugesW124.xaml.cs">
+    <Compile Update="Gauges\PageGaugesW124.xaml.cs">
       <DependentUpon>PageGaugesW124.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageGaugesBmwM2.xaml.cs">
+    <Compile Update="Gauges\PageGaugesBmwM2.xaml.cs">
       <DependentUpon>PageGaugesBmwM2.xaml</DependentUpon>
     </Compile>
-    <Compile Update="PageGaugesFast.xaml.cs">
+    <Compile Update="Gauges\PageGaugesFast.xaml.cs">
       <DependentUpon>PageGaugesFast.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Gauges\PageGaugesDiesel.xaml.cs">
+      <DependentUpon>PageGaugesDiesel.xaml</DependentUpon>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -59,7 +68,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="PageGauges.xaml">
+    <EmbeddedResource Update="Gauges\PageGaugesDiesel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">

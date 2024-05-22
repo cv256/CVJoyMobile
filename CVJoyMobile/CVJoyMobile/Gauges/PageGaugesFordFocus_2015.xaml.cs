@@ -6,16 +6,16 @@ using Xamarin.Forms.Xaml;
 namespace CVJoyMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageGaugesBmwM8_2020 : ContentPage
+    public partial class PageGaugesFordFocus_2015 : ContentPage
     {
         Gauge rpmGauge;
         Gauge speedGauge;
 
-        public PageGaugesBmwM8_2020()
+        public PageGaugesFordFocus_2015()
         {
             InitializeComponent();
 
-            speedGauge = new Gauge(speedAbsolute);
+            speedGauge = new Gauge(speedAbsolute, 80);
             rpmGauge = new Gauge(rpmAbsolute);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
@@ -40,27 +40,23 @@ namespace CVJoyMobile
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
                 //rpmText.Text = udpReceiver.Info.rpm.ToString();
                 lbGearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
-                double pedalsHeight = linePedals.Height;
-                clutch.HeightRequest = udpReceiver.Info.clutch * pedalsHeight;
-                brake.HeightRequest = udpReceiver.Info.brake * pedalsHeight;
-                accel.HeightRequest = udpReceiver.Info.accel * pedalsHeight;
                 //double turboWidth = lineTurbo.Width;
                 //turbo.WidthRequest = udpReceiver.TurboPercent() * turboWidth;
 
                 if (extra)
                 {
                     //turboMax.Text = ((Single)udpReceiver.InfoExtra.turboMax).ToString("0.0");
-                    lbDistance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0");
+                    lbDistance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0 KMs");
                     //Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
                     if (udpReceiver.InfoExtra.FuelAvg == 0)
                     {
-                        lbFuelKMs.Text = "- KMs";
-                        //lbFuelAvg.Text = "-";
+                        //FuelKMs.Text = "-";
+                        //lkmGauge.needleValue(0);
                     }
                     else
                     {
-                        lbFuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 100).ToString("0") +" KMs";
-                        //lbFuelAvg.Text = (udpReceiver.InfoExtra.FuelAvg).ToString(udpReceiver.InfoExtra.FuelAvg < 10 ? "0.0" : "0");
+                        //FuelKMs.Text = ((Single)udpReceiver.InfoExtra.Fuel / udpReceiver.InfoExtra.FuelAvg * 100).ToString("0");
+                        //lkmGauge.needleValue(Math.Min((int)udpReceiver.InfoExtra.FuelAvg,32));
                     }
                 }
 
@@ -76,14 +72,14 @@ namespace CVJoyMobile
 
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
         {
-            speedGauge.Init(0, 9999, 300,
+            speedGauge.Init(0, 9999, 220,
                 Color.Transparent,
                 Color.Transparent,
                 Color.Transparent,
-                Color.White,
-                7,
-                -143, 0, Gauge.enumGaugeRadiusSize.Fit,
-                Color.White);
+                Color.Cyan,
+                8,
+                -130, 133, Gauge.enumGaugeRadiusSize.Fit,
+                Color.DarkCyan);
         }
 
         private void rpmAbsolute_SizeChanged(object sender, EventArgs e)
@@ -92,10 +88,10 @@ namespace CVJoyMobile
                 Color.Transparent,
                 Color.Transparent,
                 Color.Transparent,
-                Color.White,
-                7,
-                135, 0, Gauge.enumGaugeRadiusSize.Fit,
-                Color.White);
+                Color.Cyan,
+                8,
+                -134, 132, Gauge.enumGaugeRadiusSize.Fit,
+                Color.DarkCyan);
         }
 
     }

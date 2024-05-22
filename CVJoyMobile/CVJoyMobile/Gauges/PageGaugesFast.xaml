@@ -161,7 +161,7 @@
 
 
         <!-- PEDALS : -->
-        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0" ColumnSpacing="4" Margin="11,130,0,0">
+        <Grid x:Name="gridPedals" Grid.Row="1"  Grid.Column="1" RowSpacing="0" ColumnSpacing="4" Margin="11,130,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4" />
                 <ColumnDefinition Width="1" />
@@ -169,41 +169,7 @@
                 <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="4" />
             </Grid.ColumnDefinitions>
-            <BoxView Grid.Row="0" Grid.Column="0" 
-                x:Name="clutch"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                 VerticalOptions="End"
-                 Color="Blue"
-                />
-            <BoxView Grid.Row="0" Grid.Column="1" 
-                x:Name="linePedals"
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="2" 
-                x:Name="brake"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="325"
-                VerticalOptions="End"
-                 Color="Red"
-                />
-            <BoxView Grid.Row="0" Grid.Column="3" 
-                 HorizontalOptions ="Fill" 
-                 VerticalOptions ="Fill" 
-                 Color="White"
-                />
-            <BoxView Grid.Row="0" Grid.Column="4" 
-                x:Name="accel"
-                 HorizontalOptions ="Fill" 
-                 HeightRequest="5"
-                VerticalOptions="End"
-                 Color="Green"
-                />
         </Grid>
-
-
 
 
         <!-- TURBO : -->

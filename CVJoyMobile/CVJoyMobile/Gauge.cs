@@ -18,12 +18,12 @@ namespace CVJoyMobile
         public int valueRedLine;
         public Double needleWidth;
         public enumGaugeRadiusSize radiusSize;
-        public enumSpecialModes specialMode;
+        public int valueMode2;
 
-        public Gauge(AbsoluteLayout pAbsoluteLayout, enumSpecialModes pSpecialMode = enumSpecialModes.Normal)
+        public Gauge(AbsoluteLayout pAbsoluteLayout, int pvalueMode2 = 0)
         {
             absoluteLayout = pAbsoluteLayout;
-            specialMode = pSpecialMode;
+            valueMode2 = pvalueMode2;
         }
 
         public enum enumGaugeRadiusSize
@@ -88,22 +88,89 @@ namespace CVJoyMobile
                 radius = 0.5 * Math.Min(absoluteLayout.Width, absoluteLayout.Height);
             }
 
-            int valueBigStep = 1000;
-            if (pValueMax - valueMin <= 200)
+            if (valueMode2 == 0)
             {
-                valueBigStep = 10;
+                drawCircle(center, radius, pAngleMin, pAngleMax, pValueMin, pValueMax, ticks1Color, ticks2Color, ticks3Color);
             }
-            else if (pValueMax - valueMin < 500)
+            else
+            {
+                int angleMid = (pAngleMax - pAngleMin) / 2;
+                drawCircle(center, radius, pAngleMin, pAngleMin+angleMid, pValueMin, valueMode2, ticks1Color, ticks2Color, ticks3Color);
+                drawCircle(center, radius, pAngleMin+angleMid, pAngleMax, valueMode2, pValueMax, ticks1Color, ticks2Color, ticks3Color);
+            }
+
+            // red line:
+            if (pValueRedLine < valueMax)
+            {
+                double redLineAngle=GetAngle(pValueRedLine);
+                Double redLineX = center.X + radius * Math.Sin(redLineAngle / 180 * Math.PI);
+                Double redLineY = center.Y - radius * Math.Cos(redLineAngle / 180 * Math.PI);
+                absoluteLayout.Children.Add(new BoxView
+                {
+                    AnchorY = 0,
+                    TranslationX = redLineX,
+                    TranslationY = redLineY,
+                    WidthRequest = 3,
+                    HeightRequest = radius * .75,
+                    Rotation = redLineAngle,
+                    Color = Color.Red
+                });
+            }
+
+            // needle:
+            int needleCenterRadius = 7 + (int)(needleWidth * 2);
+            Button needleCenterBox = new Button
+            {
+                TranslationX = center.X - needleCenterRadius,
+                TranslationY = center.Y - needleCenterRadius,
+                WidthRequest = needleCenterRadius * 2,
+                HeightRequest = needleCenterRadius * 2,
+                CornerRadius = needleCenterRadius,
+                BackgroundColor = needleCenterColor
+            };
+            absoluteLayout.Children.Add(needleCenterBox);
+            needleCenterBox.Clicked += NeedleCenterBox_Clicked;
+
+            const Double needleOffset = 0.85;
+            Double needleHeight = .9 * radius;
+            needle = new BoxView
+            {
+                AnchorY = needleOffset,
+                TranslationX = center.X - .5 * needleWidth,
+                TranslationY = center.Y - needleOffset * needleHeight,
+                WidthRequest = needleWidth,
+                HeightRequest = needleHeight,
+                Rotation = angleMin,
+                Color = needleColor,
+                CornerRadius = 3
+            };
+            absoluteLayout.Children.Add(needle);
+        }
+
+
+        private void drawCircle(Point center, Double radius, int pAngleMin, int pAngleMax, int pValueMin, int pValueMax, Color ticks1Color, Color ticks2Color, Color ticks3Color)
+        {
+            int valueBigStep;
+            double degreesPerVal = (double)(pAngleMax - pAngleMin) / (double)(pValueMax - pValueMin);
+            if (degreesPerVal< .8)
+            {
+                valueBigStep = 1000;
+            }
+            else if (degreesPerVal < 1.6)
             {
                 valueBigStep = 20;
             }
+            else
+            {
+                valueBigStep = 10;
+            }
 
-            Double bigStepsCount = (valueMax - valueMin) / valueBigStep;
-            Double angleBigStep = (angleMax - angleMin) / bigStepsCount;
-            int redLineAngle = angleMin + (int)((double)(pValueRedLine - valueMin) / (valueMax - valueMin) * (angleMax - angleMin));
+            Double bigStepsCount = (pValueMax - pValueMin) / valueBigStep;
+            Double angleBigStep = (pAngleMax - pAngleMin) / bigStepsCount;
+            double redLineAngle = GetAngle(valueRedLine); // int redLineAngle = pAngleMin + (int)((double)(valueRedLine - pValueMin) / (pValueMax - pValueMin) * (pAngleMax - pAngleMin));
 
-            int value = valueMin;
-            for (Double angle = angleMin; angle <= angleMax + 5; angle += angleBigStep)
+            int value = pValueMin;
+            for (Double angle = pAngleMin; angle <= pAngleMax + 5; angle += angleBigStep)
             {
                 // big ticks:
                 if (ticks1Color != Color.Transparent)
@@ -118,7 +185,7 @@ namespace CVJoyMobile
                         WidthRequest = 3,
                         HeightRequest = 30,
                         Rotation = angle,
-                        Color = value >= pValueRedLine && pValueRedLine != valueMax ? Color.Red : ticks1Color
+                        Color = value >= valueRedLine && valueRedLine != valueMax ? Color.Red : ticks1Color
                     });
                     // text:
                     const int textSize = 25;
@@ -128,7 +195,7 @@ namespace CVJoyMobile
                     {
                         TranslationX = textX - textSize * value.ToString().Length / 3.8,
                         TranslationY = textY - textSize / 1.5,
-                        TextColor = value >= pValueRedLine && pValueRedLine != valueMax ? Color.Red : Color.White,
+                        TextColor = value >= valueRedLine && valueRedLine != valueMax ? Color.Red : Color.White,
                         FontSize = textSize,
                         Text = value.ToString()
                     });
@@ -144,7 +211,7 @@ namespace CVJoyMobile
 
                 if (ticks2Color != Color.Transparent)
                 {
-                    if (angle + 2 < angleMax)
+                    if (angle + 2 < pAngleMax)
                     {
                         // small ticks:
                         Double subAngle = angle + angleBigStep * .5;
@@ -197,51 +264,7 @@ namespace CVJoyMobile
                 value += valueBigStep;
             }
 
-            // red line:
-            if (pValueRedLine < valueMax)
-            {
-                Double redLineX = center.X + radius * Math.Sin((double)redLineAngle / 180 * Math.PI);
-                Double redLineY = center.Y - radius * Math.Cos((double)redLineAngle / 180 * Math.PI);
-                absoluteLayout.Children.Add(new BoxView
-                {
-                    AnchorY = 0,
-                    TranslationX = redLineX,
-                    TranslationY = redLineY,
-                    WidthRequest = 3,
-                    HeightRequest = radius * .75,
-                    Rotation = redLineAngle,
-                    Color = Color.Red
-                });
-            }
 
-            // needle:
-            int needleCenterRadius = 7 + (int)(needleWidth * 2);
-            Button needleCenterBox = new Button
-            {
-                TranslationX = center.X - needleCenterRadius,
-                TranslationY = center.Y - needleCenterRadius,
-                WidthRequest = needleCenterRadius * 2,
-                HeightRequest = needleCenterRadius * 2,
-                CornerRadius = needleCenterRadius,
-                BackgroundColor = needleCenterColor
-            };
-            absoluteLayout.Children.Add(needleCenterBox);
-            needleCenterBox.Clicked += NeedleCenterBox_Clicked;
-
-            const Double needleOffset = 0.85;
-            Double needleHeight = .9 * radius;
-            needle = new BoxView
-            {
-                AnchorY = needleOffset,
-                TranslationX = center.X - .5 * needleWidth,
-                TranslationY = center.Y - needleOffset * needleHeight,
-                WidthRequest = needleWidth,
-                HeightRequest = needleHeight,
-                Rotation = angleMin,
-                Color = needleColor,
-                CornerRadius = 3
-            };
-            absoluteLayout.Children.Add(needle);
         }
 
         private void NeedleCenterBox_Clicked(object sender, EventArgs e)
@@ -252,24 +275,27 @@ namespace CVJoyMobile
 
         public void needleValue(int value)
         {
-            if (specialMode == enumSpecialModes.BmwM2Speed)
+            needle.Rotation = GetAngle(value);
+        }
+
+        public double  GetAngle(int value)
+        {
+            if (valueMode2 > 0)
             {
-                int rotation ;
-                if (value <= 120)
+                if (value <= valueMode2)
                 {
-                    rotation = angleMin + (int)((double)(value ) / 120 * (angleMax - angleMin)/2);
+                    return angleMin + ((double)(value) / valueMode2 * (angleMax - angleMin) / 2);
                 }
                 else
                 {
-                    rotation = angleMin + (angleMax - angleMin) / 2 + (int)((double)(value - 120) / (valueMax - 120) * (angleMax - angleMin)/2);
+                    return angleMin + (angleMax - angleMin) / 2 + ((double)(value - valueMode2) / (valueMax - valueMode2) * (angleMax - angleMin) / 2);
                 }
-                needle.Rotation = rotation;
             }
             else
             {
-                int rotation = angleMin + (int)((double)(value - valueMin) / (valueMax - valueMin) * (angleMax - angleMin));
-                needle.Rotation = rotation;
+                return angleMin + ((double)(value - valueMin) / (valueMax - valueMin) * (angleMax - angleMin));
             }
         }
+
     }
 }

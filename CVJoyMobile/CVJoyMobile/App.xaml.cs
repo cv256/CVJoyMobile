@@ -47,6 +47,7 @@ namespace CVJoyMobile
         public async void AskForPage()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("", "Cancel", null, "Generic Digital", "Generic Diesel", "Generic Fast",
+                "Ford Focus 2015 ( 220 / 6500 )", "Ford Focus 2015 ( 240 / 5000 )",
                 "VW Polo  ( 240 / 5500 )",
                 "BMW M2  ( 300 / 8000 )", "BMW M8 2020  ( 330 / 8000 )",
                 "Mercedes W124 1990  ( 260 / 7000 )", "Mercedes S 2008  ( 260 / 7000 )", "Mercedes S 2015  ( 260 / 8000 )","Mercedes AMG 2021  ( 360 / 8000 )", 
@@ -57,10 +58,19 @@ namespace CVJoyMobile
                     Application.Current.MainPage = new PageDigital();
                     break;
                 case "Generic Diesel":
-                    Application.Current.MainPage = new PageGauges();
+                    Application.Current.MainPage = new PageGaugesDiesel();
                     break;
                 case "Generic Fast":
                     Application.Current.MainPage = new PageGaugesFast();
+                    break;
+                case "Ford Focus 2015 ( 220 / 6500 )":
+                    Application.Current.MainPage = new PageGaugesFordFocus_2015();
+                    break;
+                case "Ford Focus 2015 ( 240 / 5000 )":
+                    Application.Current.MainPage = new PageGaugesFordFocus_2015d();
+                    break;
+                case "VW Polo  ( 240 / 5500 )":
+                    //Application.Current.MainPage = new PageGaugesVW_Polo();
                     break;
                 case "BMW M2  ( 300 / 8000 )":
                     Application.Current.MainPage = new PageGaugesBmwM2();
@@ -79,9 +89,6 @@ namespace CVJoyMobile
                     break;
                 case "Mercedes AMG 2021  ( 360 / 8000 )":
                     //Application.Current.MainPage = new PageGaugesMercedes_AMG_2021();
-                    break;
-                case "VW Polo  ( 240 / 5500 )":
-                    //Application.Current.MainPage = new PageGaugesVW_Polo();
                     break;
                 case "Debug":
                     Application.Current.MainPage = new PageDebug();

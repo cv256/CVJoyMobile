@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVJoyMobile.PageGaugesFordFocus_2015d"
+             NavigationPage.HasNavigationBar="false"
+             Title="Ford Focus 2015 Diesel">
+
+    <Grid BackgroundColor="#ff000000" RowSpacing="0" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*" /> <!--infos-->
+            <RowDefinition Height="61*" /> <!-- gauges-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32*" />
+            <ColumnDefinition Width="33*" />
+            <ColumnDefinition Width="35*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- IMG: -->
+        <Image Aspect="AspectFit"  x:Name="img" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,0,0,0"
+             HorizontalOptions="Center"
+               VerticalOptions="End"
+               Source="fordfocus2015d"  
+               />
+
+        <!-- RPM : -->
+        <AbsoluteLayout Grid.Row="1"  Grid.Column="0" Margin="0,88,5,-50"
+                 x:Name="rpmAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"                
+                 SizeChanged="rpmAbsolute_SizeChanged"
+        />
+
+        <!-- SPEED : -->
+        <AbsoluteLayout  Grid.Row="1"  Grid.Column="2" Margin="0,78,0,-50"
+                 x:Name="speedAbsolute"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions ="FillAndExpand"
+                 SizeChanged="speedAbsolute_SizeChanged"
+        />
+
+        <!-- GEAR : -->
+        <Label Grid.Row="1"  Grid.Column="1" Margin="0,20,0,0"
+               x:Name="gear"
+               Text="N"
+               TextColor="White"
+               FontSize="105"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+        <!-- GearAuto : -->
+        <Label Grid.Row="1"  Grid.Column="1" Margin="0,135,0,0"
+               x:Name="lbGearAuto"
+               Text="Manual"
+               TextColor="White"
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+
+
+        <ImageButton Grid.Row="1"  Grid.Column="0"  Margin="0,2,60,28"
+                Clicked="Button_Clicked"
+                Source="dashlights"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                />
+
+        <!-- TIME : -->
+        <Label Grid.Row="1"  Grid.Column="0" Margin="100,0,0,-2"
+               x:Name="lbTime"
+               Text="23:59"
+               TextColor="White"
+               FontSize="24"
+               HorizontalOptions="Start"
+               VerticalOptions="End" />
+
+        <!-- Distance : -->
+        <Label Grid.Row="1"  Grid.Column="2" Margin="0,0,100,-2"
+               x:Name="lbDistance"
+               Text="000 KMs"
+               TextColor="White"
+               FontSize="24"
+               HorizontalOptions="End"
+               VerticalOptions="End" />
+
+
+    </Grid>
+</ContentPage>
