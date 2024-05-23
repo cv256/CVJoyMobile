@@ -15,7 +15,7 @@ namespace CVJoyMobile
         {
             InitializeComponent();
 
-            speedGauge = new Gauge(speedAbsolute, 120);
+            speedGauge = new Gauge(speedAbsolute, 100);
             rpmGauge = new Gauge(rpmAbsolute);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
@@ -34,19 +34,20 @@ namespace CVJoyMobile
                 //slipRR.Color = udpReceiver.Info.slipRR;
                 //speedText.Text = udpReceiver.Info.speed.ToString();
                 speedGauge.needleValue(udpReceiver.Info.speed);
+                speedText.Text = udpReceiver.Info.speed.ToString();
                 gear.Text = udpReceiver.Info.gear;
                 //rpm.WidthRequest = udpReceiver.RpmPercent() * horizLine1.Width;
                 //rpm.Color = udpReceiver.RpmColor();
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
                 //rpmText.Text = udpReceiver.Info.rpm.ToString();
-                lbGearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
+                //lbGearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
                 //double turboWidth = lineTurbo.Width;
                 //turbo.WidthRequest = udpReceiver.TurboPercent() * turboWidth;
 
                 if (extra)
                 {
                     //turboMax.Text = ((Single)udpReceiver.InfoExtra.turboMax).ToString("0.0");
-                    lbDistance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0.0 KMs");
+                    lbDistance.Text = ((Single)udpReceiver.InfoExtra.DistanceTraveled).ToString("0000.0");
                     //Lap.Text = (udpReceiver.InfoExtra.CompletedLaps + 1).ToString() + " / " + udpReceiver.InfoExtra.NumberOfLaps.ToString();
                     if (udpReceiver.InfoExtra.FuelAvg == 0)
                     {
@@ -73,24 +74,24 @@ namespace CVJoyMobile
         private void speedAbsolute_SizeChanged(object sender, EventArgs e)
         {
             speedGauge.Init(0, 9999, 240,
-                Color.White,
-                Color.White,
+                Color.Transparent,
+                Color.Transparent,
                 Color.Transparent,
                 Color.Cyan,
-                8,
+                9,
                 -130, 133, Gauge.enumGaugeRadiusSize.Fit,
                 Color.DarkCyan);
         }
 
         private void rpmAbsolute_SizeChanged(object sender, EventArgs e)
         {
-            rpmGauge.Init(0, 4800, 6000,
-                Color.White,
-                Color.White,
-                Color.White,
+            rpmGauge.Init(0, 4900, 6000,
+                Color.Transparent,
+                Color.Transparent,
+                Color.Transparent,
                 Color.Cyan,
-                8,
-                -134, 132, Gauge.enumGaugeRadiusSize.Fit,
+                9,
+                -132, 130, Gauge.enumGaugeRadiusSize.Fit,
                 Color.DarkCyan);
         }
 

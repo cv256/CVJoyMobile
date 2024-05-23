@@ -11,7 +11,7 @@ namespace CVJoyMobile
         {
             InitializeComponent();
 
-            pedals = new Pedals(gridPedals);
+            pedals = new Pedals(gridPedals, true);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
@@ -21,6 +21,8 @@ namespace CVJoyMobile
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.BatchBegin();
+                lbTime.Text = DateTime.Now.ToString("H:mm");
+
                 speed.Text = udpReceiver.Info.speed.ToString();
                 gear.Text = udpReceiver.Info.gear;
                 slipFL.Color = udpReceiver.Info.slipFL;
@@ -31,11 +33,11 @@ namespace CVJoyMobile
                 dirtFR.Color = udpReceiver.Info.dirtFR;
                 dirtRL.Color = udpReceiver.Info.dirtRL;
                 dirtRR.Color = udpReceiver.Info.dirtRR;
-                rpm.WidthRequest = udpReceiver.RpmPercent() * horizLine1.Width;
+                rpm.WidthRequest = udpReceiver.RpmPercent() * GridTires.Width;
                 rpm.Color = udpReceiver.RpmColor();
-                rpmText.Text = udpReceiver.Info.rpm.ToString();
+                rpmText.Text = udpReceiver.Info.rpm.ToString("#,###");
                 gearAuto.Text = udpReceiver.Info.gearAuto ? "Gear Auto" : "Gear Manual";
-                pedals.SetValues(udpReceiver.Info);
+                pedals.SetValues(udpReceiver);
 
                 if (extra)
                 {

@@ -18,7 +18,7 @@ namespace CVJoyMobile
 
             rpmGauge = new Gauge(rpmAbsolute);
             speedGauge = new Gauge(speedAbsolute);
-            pedals = new Pedals(gridPedals);
+            pedals = new Pedals(gridPedals,false);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
@@ -40,7 +40,7 @@ namespace CVJoyMobile
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
                 rpmText.Text = udpReceiver.Info.rpm.ToString();
                 gearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
-                pedals.SetValues(udpReceiver.Info);
+                pedals.SetValues(udpReceiver);
 
                 if (extra)
                 {

@@ -20,7 +20,7 @@ namespace CVJoyMobile
             speedGauge = new Gauge(speedAbsolute, 120);
             rpmGauge = new Gauge(rpmAbsolute);
             lkmGauge = new Gauge(lkmAbsolute);
-            pedals = new Pedals(gridPedals);
+            pedals = new Pedals(gridPedals,false);
 
             (Application.Current as CVJoyMobile.App).udpReceiver.Updated += UdpReceiver_Updated;
         }
@@ -44,7 +44,7 @@ namespace CVJoyMobile
                 rpmGauge.needleValue(udpReceiver.Info.rpm);
                 //rpmText.Text = udpReceiver.Info.rpm.ToString();
                 lbGearAuto.Text = udpReceiver.Info.gearAuto ? "Auto" : "Manual";
-                pedals.SetValues(udpReceiver.Info);
+                pedals.SetValues(udpReceiver);
                 //double turboWidth = lineTurbo.Width;
                 //turbo.WidthRequest = udpReceiver.TurboPercent() * turboWidth;
 
